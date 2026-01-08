@@ -6,7 +6,7 @@ apt-get update
 
 apt-get -y upgrade
 
-apt-get -y install openjdk-11-jdk tomcat9 tomcat9-admin maven
+apt-get -y install openjdk-11-jdk tomcat9 tomcat9-admin maven git
 
 groupadd -f tomcat9
 
@@ -27,10 +27,24 @@ mvn archetype:generate -DgroupId=org.zaidinvergeles \
 
 cp /vagrant/pom.xml /home/vagrant/tomcat-pruebadespliegue/pom.xml
 
+# Borramos proyecto si existe previamente
+rm -rf rock-paper-scissors
+
+git clone https://github.com/cameronmcnz/rock-paper-scissors.git
+cd rock-paper-scissors
+git checkout patch-1
+
+cp /vagrant/pom_2.xml /home/vagrant/rock-paper-scissors/pom.xml
+
+
+
 systemctl restart tomcat9
 systemctl status tomcat9
 
 mvn --v
-cd /home/vagrant/tomcat-pruebadespliegue
 
-mvn tomcat7:deploy
+cd /home/vagrant/tomcat-pruebadespliegue
+mvn tomcat7:redeploy
+
+cd /home/vagrant/rock-paper-scissors
+mvn tomcat7:redeploy
