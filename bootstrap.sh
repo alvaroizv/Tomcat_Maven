@@ -19,3 +19,4 @@ systemctl restart tomcat9
 
 systemctl status tomcat9
 
+mvn --v
