@@ -14,7 +14,7 @@
     <id>Tomcat</id>
     <username>deploy</username>
     <password>1234</password>
-  </server>
+    </server>
   </servers>
   <mirrors>
   </mirrors>

@@ -14,9 +14,19 @@ id -u tomcat9 >/dev/null 2>&1 || useradd -s /bin/false -g tomcat9 -d /etc/tomcat
 
 cp /vagrant/context.xml /usr/share/tomcat9-admin/host-manager/META-INF/context.xml
 cp /vagrant/tomcat-users.xml /etc/tomcat9/tomcat-users.xml
+cp /vagrant/settings.xml /etc/maven/settings.xml
+
+# Borramos proyecto si existe previamente
+rm -rf tomcat-war
+
+
+mvn archetype:generate -DgroupId=org.zaidinvergeles \
+                         -DartifactId=tomcat-war \
+                         -Ddeployment \
+                         -DarchetypeArtifactId=maven-archetype-webapp \
+                         -DinteractiveMode=false
 
 systemctl restart tomcat9
-
 systemctl status tomcat9
 
 mvn --v
