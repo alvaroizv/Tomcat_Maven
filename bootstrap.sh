@@ -19,7 +19,6 @@ cp /vagrant/settings.xml /etc/maven/settings.xml
 # Borramos proyecto si existe previamente
 rm -rf tomcat-pruebadespliegue
 
-
 mvn archetype:generate -DgroupId=org.zaidinvergeles \
                          -DartifactId=tomcat-pruebadespliegue \
                          -Ddeployment \
