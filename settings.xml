@@ -10,7 +10,11 @@
   </proxies>
 
   <servers>
-
+    <server>
+    <id>Tomcat</id>
+    <username>deploy</username>
+    <password>1234</password>
+  </server>
   </servers>
   <mirrors>
   </mirrors>
