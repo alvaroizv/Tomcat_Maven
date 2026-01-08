@@ -20,6 +20,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <!-- Cambiamos a versión más moderna de JUnit, solicitada por el propio juego, ya que sino da error -->
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
