@@ -17,16 +17,21 @@ cp /vagrant/tomcat-users.xml /etc/tomcat9/tomcat-users.xml
 cp /vagrant/settings.xml /etc/maven/settings.xml
 
 # Borramos proyecto si existe previamente
-rm -rf tomcat-war
+rm -rf tomcat-pruebadespliegue
 
 
 mvn archetype:generate -DgroupId=org.zaidinvergeles \
-                         -DartifactId=tomcat-war \
+                         -DartifactId=tomcat-pruebadespliegue \
                          -Ddeployment \
                          -DarchetypeArtifactId=maven-archetype-webapp \
                          -DinteractiveMode=false
+
+cp /vagrant/pom.xml /home/vagrant/tomcat-pruebadespliegue/pom.xml
 
 systemctl restart tomcat9
 systemctl status tomcat9
 
 mvn --v
+cd /home/vagrant/tomcat-pruebadespliegue
+
+mvn tomcat7:deploy
