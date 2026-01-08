@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key= false
 
 
-  config.vm.define "nginx" do |debian|
+  config.vm.define "tomcat" do |debian|
      debian.vm.hostname="debian"
      debian.vm.network "private_network",ip: "192.168.56.18"
      debian.vm.provision "shell",path: "bootstrap.sh"
