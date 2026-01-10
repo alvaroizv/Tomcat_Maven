@@ -11,7 +11,7 @@
 3. [Instalación de certificado seguro SSL](#3-instalación-de-certificado-seguro-en-servidor-ftp)
 
 
-1. Instalación de Tomcat y OpenJDK.
+## 1. Instalación de Tomcat y OpenJDK.
 
 Para instalar ambos paquetes debemos incluir en nuestro archivo de provisión las siguientes lineas :
 
@@ -19,7 +19,7 @@ Para instalar ambos paquetes debemos incluir en nuestro archivo de provisión la
 
 Previamente a su instalación usamos apt-get update y upgrade para que se actualicen e instalen los paquetes del Sistema Operativo.
 
-1.1 Creación de Usuario y Grupo.
+### 1.1 Creación de Usuario y Grupo.
 
 Para crear a un usuario y asignarle un grupo deberemos ejecutar las siguientes lineas en el archivo de provisión
 
@@ -33,7 +33,7 @@ En la segunda linea, utilizaremos una tubería/pipe || como operador condicional
 
     Si no se ha encontrado al usuario, se ejecutan las instrucciones de la derecha, que corresponden a la creación del usuario tomcat9, asignándole un grupo (-g) , una terminal (-s) y un directorio de trabajo ( -d ) por defecto
 
-2. Tomcat9 y su configuración
+## 2. Tomcat9 y su configuración
 
 Una vez realizado todo esto, realizaremos un vagrant up para comprobar el estado del servicio tomcat9, y así asegurarnos de que todo va bien :
 
@@ -43,7 +43,7 @@ Para desplegarlo utilizamos nip.io para saltarnos el proceso de crear un servido
 
 ![ItWorks](4.ItWorks.png)
 
-2.1 Configuración del acceso remoto
+### 2.1 Configuración del acceso remoto
 
 Para poder solucionar errores de acceso remoto a nuestro servidor tomcat9, proporcionarios un archivo llamado context.xml al servidor para sustituir al que se carga por defecto, para ello utilizaremos la siguiente linea en el archivo de provisión :
 
@@ -55,7 +55,7 @@ Este es el fichero en cuestión :
 
 ![Fichero Context XML](5.contextXML.png)
 
-2.2 Usuarios en Tomcat9
+### 2.2 Usuarios en Tomcat9
 
 Para definir los usuarios que tengan acceso a tomcat9 utilizaremos la sobre-escritura del fichero tomcat-users.xml,proporcionado por la práctica :
 
@@ -70,7 +70,7 @@ Este es el fichero en cuestión :
 
 En él creamos 2 usuarios nuevos, alumno para tomcat y alvaro para Maven, que lo usaremos más adelante
 
-3. Admin-Area de Tomcat9
+## 3. Admin-Area de Tomcat9
 
 Para instalar dicho paquete,que proporciona herramientas de gestión y administración de servidores, agregaremos al final de la linea **apt-get install -y** el paquete correspondiente ( tomcat9-admin ) :
 
@@ -79,7 +79,7 @@ apt-get -y install openjdk-11-jdk tomcat9 tomcat9-admin
 
 ```
 
-3.1 Paneles de Administración Gráficos
+### 3.1 Paneles de Administración Gráficos
 
 Una vez instalado dicho paquete accederemos a las siguientes paneles de administración:
 
@@ -95,7 +95,7 @@ Posteriormente, accedemos al panel del **Gestor de Máquinas Virtuales** :
 
 ![Gestor de Máquinas Virtuales](9.Gestor_MV.png)
 
-3.2 Despliegue Manual mediante GUI
+### 3.2 Despliegue Manual mediante GUI
 
 Accedemos al Gestor de aplicaciones web y buscamos la sección **War File to Deploy** :
 
@@ -105,4 +105,6 @@ Seleccionamos el archivo de pruebas y le damos a Desplegar,luego nos aparecerá 
 
 ![Lista de Apps](11.Lista_Apps.png)
 
-4. Despliegue mediante Maven.
+## 4. Despliegue mediante Maven
+
+
