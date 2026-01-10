@@ -12,9 +12,9 @@ groupadd -f tomcat9
 
 id -u tomcat9 >/dev/null 2>&1 || useradd -s /bin/false -g tomcat9 -d /etc/tomcat9 tomcat9
 
-cp /vagrant/context.xml /usr/share/tomcat9-admin/host-manager/META-INF/context.xml
-cp /vagrant/tomcat-users.xml /etc/tomcat9/tomcat-users.xml
-cp /vagrant/settings.xml /etc/maven/settings.xml
+cp /vagrant/config_files/context.xml /usr/share/tomcat9-admin/host-manager/META-INF/context.xml
+cp /vagrant/config_files/tomcat-users.xml /etc/tomcat9/tomcat-users.xml
+cp /vagrant/config_files/settings.xml /etc/maven/settings.xml
 
 # Borramos proyecto si existe previamente
 rm -rf tomcat-pruebadespliegue
@@ -25,7 +25,7 @@ mvn archetype:generate -DgroupId=org.zaidinvergeles \
                          -DarchetypeArtifactId=maven-archetype-webapp \
                          -DinteractiveMode=false
 
-cp /vagrant/pom.xml /home/vagrant/tomcat-pruebadespliegue/pom.xml
+cp /vagrant/config_files/pom.xml /home/vagrant/tomcat-pruebadespliegue/pom.xml
 
 # Borramos proyecto si existe previamente
 rm -rf rock-paper-scissors
@@ -34,7 +34,7 @@ git clone https://github.com/cameronmcnz/rock-paper-scissors.git
 cd rock-paper-scissors
 git checkout patch-1
 
-cp /vagrant/pom_2.xml /home/vagrant/rock-paper-scissors/pom.xml
+cp /vagrant/config_files/pom_2.xml /home/vagrant/rock-paper-scissors/pom.xml
 
 
 

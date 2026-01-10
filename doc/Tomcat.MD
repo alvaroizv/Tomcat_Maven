@@ -19,5 +19,25 @@ Para instalar ambos paquetes debemos incluir en nuestro archivo de provisión la
 
 Previamente a su instalación usamos apt-get update y upgrade para que se actualicen e instalen los paquetes del Sistema Operativo.
 
+1.1 Creación de Usuario y Grupo.
+
+Para crear a un usuario y asignarle un grupo deberemos ejecutar las siguientes lineas en el archivo de provisión
+
+![Creación de Grupo - Usuario](2.Usuario.png)
+
+En la primera linea forzamos con -f a crear un grupo llamado tomcat 9.
+
+En la segunda linea, utilizaremos una tubería/pipe || como operador condicional :
+
+    -En la parte de la izquierda, utilizamos el comando de Linux id para mostrar al usuario con su id, desviando la salida por pantalla y los errores a /dev/null.
+
+    Si no se ha encontrado al usuario, se ejecutan las instrucciones de la derecha, que corresponden a la creación del usuario tomcat9, asignándole un grupo (-g) , una terminal (-s) y un directorio de trabajo ( -d ) por defecto
+
+2. Tomcat9, Configuración y Admin-Area
+
+Una vez realizado todo esto, realizaremos un vagrant up para comprobar el estado del servicio tomcat9, y así asegurarnos de que todo va bien :
+
+![Status de Tomcat9](3.Status.png)
+
 
 
