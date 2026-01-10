@@ -29,9 +29,9 @@ En la primera linea forzamos con -f a crear un grupo llamado tomcat 9.
 
 En la segunda linea, utilizaremos una tubería/pipe || como operador condicional :
 
-    -En la parte de la izquierda, utilizamos el comando de Linux id para mostrar al usuario con su id, desviando la salida por pantalla y los errores a /dev/null.
++ En la parte de la izquierda, utilizamos el comando de Linux id para mostrar al  usuario con su id, desviando la salida por pantalla y los errores a /dev/null.
 
-    Si no se ha encontrado al usuario, se ejecutan las instrucciones de la derecha, que corresponden a la creación del usuario tomcat9, asignándole un grupo (-g) , una terminal (-s) y un directorio de trabajo ( -d ) por defecto
++ Si no se ha encontrado al usuario, se ejecutan las instrucciones de la derecha, que corresponden a la creación del usuario tomcat9, asignándole un grupo (-g) , una terminal (-s) y un directorio de trabajo ( -d ) por defecto
 
 ## 2. Tomcat9 y su configuración
 
@@ -106,5 +106,98 @@ Seleccionamos el archivo de pruebas y le damos a Desplegar,luego nos aparecerá 
 ![Lista de Apps](11.Lista_Apps.png)
 
 ## 4. Despliegue mediante Maven
+
+Para realizar un despliegue mediante Maven, primero tendremos que instalarlo, agregando el paquete maven a nuestra linea
+llamada apt-get install -y ...
+
+``` bash
+apt-get -y install openjdk-11-jdk tomcat9 tomcat9-admin maven
+
+```
+
+Luego comprobaremos que todo ha ido bien con el comando **mvn -v**:
+
+![Salida de mvn -v](12.Maven.png)
+
+Como comentamos previamente, el usuario con acceso a Maven lo añadimos en tomcat-users.xml, siendo este **alvaro** con contraseña **1234**.
+
+Lo siguiente será configurar Maven, con el archivo settings.xml, donde le daremos un indicador sobre que servidor se van a desplegar los proyectos.
+
+Una vez modificado, lo añadiremos a la máquina virtual con la siguiente sentencia:
+
+``` bash
+cp /vagrant/config_files/settings.xml /etc/maven/settings.xml
+
+```
+
+Nota: El contenido de el archivo, previo a su sobre-escritura, lo he sacado de la Máquina Virtual haciendo primero un **cat** y luego Ctrl C , Ctrl V.
+
+Dicho contenido es el siguiente:
+
+![Fichero settings.xml](13.SettingsXML.png)
+
+### 4.1 Generación de aplicaciones con Maven
+
+Para generar una aplicación de prueba en Maven con el siguiente comando:
+
+``` bash
+mvn archetype:generate -DgroupId=org.zaidinvergeles \
+                         -DartifactId=tomcat-pruebadespliegue \
+                         -Ddeployment \
+                         -DarchetypeArtifactId=maven-archetype-webapp \
+                         -DinteractiveMode=false
+
+```
+
+Una vez generado, deberemos modificar el POM para que haga referencia al plugin que hace de intermediario entre Tomcat y Maven.
+
+Para realizar esto modificamos el fichero pom.xml asingandole la etiqueta plugin con su contenido correspondiente:
+
+![Fichero pom.xml](14.pomXML.png)
+
+Luego sustituiremos el fichero por defecto con el siguiente comando:
+
+``` bash
+cp /vagrant/config_files/pom.xml /home/vagrant/tomcat-pruebadespliegue/pom.xml
+
+```
+
+### 4.2 Despliegue de la aplicación
+
+Para desplegar la aplicación deberemos estar en su carpeta correspondiente, para posteriormente desplegarlo de manera correcta, usaremos estas 2 sentencias:
+
+``` bash
+cd /home/vagrant/tomcat-pruebadespliegue
+mvn tomcat7:redeploy
+```
+
+Lo que nos dará la siguiente salida por consola :
+
+![Primer Deploy](15.Primer_Deploy.png)
+
+Ahora, para comprobar que todo ha funcionado, nos meteremos al enlace correspondiente para ver la aplicación desplegada:
+
+![Primera App](16.App1.png)
+
+
+## 5. Tarea: Despliegue Rock-Paper-Scissors.
+
+Para la siguiente tarea, realizaremos los 3 pasos inicales en nuestro fichero de provisión, las cuales serán las siguientes:
+
++ Instalar Git en la Máquina Virtual
++ Hacer un Git Clone del Repositorio
++ Movernos a la carpeta del repositorio descargado
++ Cambiarnos de rama
+
+Todo ello lo realizamos con estos comandos :
+
+``` bash
+git clone https://github.com/cameronmcnz/rock-paper-scissors.git
+cd rock-paper-scissors
+git checkout patch-1
+
+```
+
+
 
 
