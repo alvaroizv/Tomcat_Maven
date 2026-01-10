@@ -1,14 +1,17 @@
 ## Índice
 
-1. [Preparación previa a la práctica](#preparacion-previa-a-la-práctica)
-   - [Modificar el archivo de zona directa](#modificar-el-archivo-de-zona-directa)
-   - [Modificar el Vagrantfile](#modificar-el-vagrantfile)
-   - [Modificar el archivo resolv.conf](#modificar-el-archivo-resolvconf)
-   - [Uso de Cliente FTP gráfico](#uso-de-cliente-ftp-gráfico)
-2. [Instalación y configuración del servidor vsftpd sobre Linux](#2-instalación-y-configuración-del-servidor-vsftpd-sobre-linux)
-   - [Archivo vsftpd.conf](#21-archivo-vsftpdconf)
-   - [Conexiones con FileZilla Client](#22-comprobaciones-de-conexiones-con-filezilla-client)
-3. [Instalación de certificado seguro SSL](#3-instalación-de-certificado-seguro-en-servidor-ftp)
+1. [Instalación de Tomcat y OpenJDK](#1-instalación-de-tomcat-y-openjdk)
+   - [Creación de Usuario y Grupo](#11-creación-de-usuario-y-grupo)
+2. [Tomcat9 y su configuración](#2-tomcat9-y-su-configuración)
+   - [Configuración del acceso remoto](#21-configuración-del-acceso-remoto)
+   - [Gestión de usuarios en Tomcat9](#22-usuarios-en-tomcat9)
+3. [Admin-Area de Tomcat9](#3-admin-area-de-tomcat9)
+   - [Uso de Paneles de Administración Gráficos](#31-paneles-de-administración-gráficos)
+   - [Despliegue manual mediante GUI](#32-despliegue-manual-mediante-gui)
+4. [Despliegue mediante Maven](#4-despliegue-mediante-maven)
+   - [Generación de aplicaciones con Maven](#41-generación-de-aplicaciones-con-maven)
+   - [Configuración del plugin y despliegue](#42-despliegue-de-la-aplicación)
+5. [Tarea: Despliegue Rock-Paper-Scissors](#5-tarea-despliegue-rock-paper-scissors)
 
 
 ## 1. Instalación de Tomcat y OpenJDK.
@@ -182,6 +185,8 @@ Ahora, para comprobar que todo ha funcionado, nos meteremos al enlace correspond
 
 ## 5. Tarea: Despliegue Rock-Paper-Scissors.
 
+Nota: Por el enunciado y por optimización, he interpretado el enunciado de la tarea como desplegar ambas aplicaciones, una en cada lado, en vez de sobre-escribir la de ejemplo por la nueva.
+
 Para la siguiente tarea, realizaremos los 3 pasos inicales en nuestro fichero de provisión, las cuales serán las siguientes:
 
 + Instalar Git en la Máquina Virtual
@@ -197,6 +202,27 @@ cd rock-paper-scissors
 git checkout patch-1
 
 ```
+
+Luego, al tener el proyecto generado, solo habrá que modificar su pom, en este caso será el fichero **pom_2.xml** :
+
+![Fichero pom_2.xml](17.pom2XML.png)
+
+Podría parecer que solo he tenido que modificar el groupId/artifactId y el path,basandome en el fichero **pom.xml**,pero nada más lejos de la realidad.
+
+A parte de basarme en dicho fichero, tuve que forzar el uso del compilador moderno y cambiar la versión de jUnit, ya que daba error al hacer el Build.
+
+Una vez cambiados esos dos detalles, tendremos la siguiente salida por consola :
+
+![Consola del Segundo Deploy](18.Segundo_Deploy.png)
+
+y cuando accedamos a la ruta correspondiente (nuestra dirección IP seguido de .nip.io/juego) nos saldrá dicha aplicación desplegada :
+
+![Segunda App Desplegada](19.App2.png)
+
+
+
+
+
 
 
 
