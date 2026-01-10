@@ -39,5 +39,17 @@ Una vez realizado todo esto, realizaremos un vagrant up para comprobar el estado
 
 ![Status de Tomcat9](3.Status.png)
 
+Para desplegarlo utilizamos nip.io para saltarnos el proceso de crear un servidor dns auxiliar, se adjunta captura de la web:
+
+![ItWorks](4.ItWorks.png)
+
+2.1 Configuración del acceso remoto
+
+Para poder solucionar errores de acceso remoto a nuestro servidor tomcat9, proporcionarios un archivo llamado context.xml al servidor para sustituir al que se carga por defecto, para ello utilizaremos la siguiente linea en el archivo de provisión :
+
+``` bash
+cp /vagrant/config_files/context.xml /usr/share/tomcat9-admin/host-manager/META-INF/context.xml
+```
+
 
 
