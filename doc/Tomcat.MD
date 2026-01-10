@@ -1,9 +1,3 @@
-# Despliegue de Aplicaciones Java con Tomcat y Maven
-
-Este proyecto tiene como objetivo **desplegar apliacaciones en java (ficheros .war) con Tomcat y Maven** en una máquina virtual Debian, desplegada mediante **Vagrant** y **VirtualBox**. 
-
----
-
 ## Índice
 
 1. [Preparación previa a la práctica](#preparacion-previa-a-la-práctica)
@@ -16,11 +10,14 @@ Este proyecto tiene como objetivo **desplegar apliacaciones en java (ficheros .w
    - [Conexiones con FileZilla Client](#22-comprobaciones-de-conexiones-con-filezilla-client)
 3. [Instalación de certificado seguro SSL](#3-instalación-de-certificado-seguro-en-servidor-ftp)
 
----
 
-## Descripción general
+1. Instalación de Tomcat y OpenJDK.
 
-Este proyecto consiste en la instalación y configuración manual de un servidor Tomcat sobre Debian. Se usará Maven para realizar pruebas de despliegue de aplicaciones Java mediante archivos .war y desde un repositorio de GitHub externo.
+Para instalar ambos paquetes debemos incluir en nuestro archivo de provisión las siguientes lineas :
 
-También se configurará e instalará el admin - area de tomcat9, para la administración de proyectos desplegados y host conectados
----
+![Instalación de Tomcat y Maven](1.Instalacion.png)
+
+Previamente a su instalación usamos apt-get update y upgrade para que se actualicen e instalen los paquetes del Sistema Operativo.
+
+
+
